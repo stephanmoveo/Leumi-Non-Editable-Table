@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { OutlineButton, PrimaryLargeBtn, BorderLessBtn } from "../StyledComponents/Buttons";
+import React from "react";
+import { PrimaryLargeBtn, BorderLessBtn } from "../StyledComponents/Buttons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   resetData,
@@ -8,12 +8,11 @@ import {
 } from "../../store/slices/dataSlice";
 import ButtonUnstyled from "@mui/base/ButtonUnstyled";
 
-export default function FooterBtn({ setisEditable, setIsinEditMode }) {
+export default function FooterBtn({ setIsinEditMode }) {
   const isDisable = useSelector((state) => state.dataReducer.isDisable);
 
   const dispatch = useDispatch();
   const confirm = () => {
-    setisEditable("Cell2");
     setIsinEditMode(false);
     dispatch(confirmEdit(true));
     

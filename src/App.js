@@ -13,9 +13,8 @@ function App() {
           tableData={mokeJsonData}
           columnData={columnDataaa}
           newDataCallback={logDataReceived}
-          mainTitle='הגדרת מנהל'
+          mainTitle='טבלה ללא עריכה'
         />
-        {/* <AlertDialog /> */}
       </div>
     </div>
   );

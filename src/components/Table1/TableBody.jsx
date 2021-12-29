@@ -1,12 +1,13 @@
 import React from "react";
 import { FlexDiv, AddInfoP, AddInfoDiv } from "../StyledComponents/Elements";
+import Fade from "@mui/material/Fade";
 import Tooltip from "@mui/material/Tooltip";
 
 export default function TableBody({
+  checked,
   getTableBodyProps,
-  page,
+  rows,
   prepareRow,
-  isEditable,
   renderRowSubComponent,
   visibleColumns,
 }) {
@@ -16,7 +17,7 @@ export default function TableBody({
 
   return (
     <tbody {...getTableBodyProps()}>
-      {page.map((row, i) => {
+      {rows.map((row, i) => {
         prepareRow(row);
         return (
           <>
@@ -39,7 +40,7 @@ export default function TableBody({
                         sx: {
                           maxWidth: cell.column.width,
                           marginBottom: "3px !important",
-                          marginRight: "-12px !important",
+                          marginRight: "-10px !important",
                         },
                       },
                     }}
@@ -55,19 +56,21 @@ export default function TableBody({
                       key={index}
                       style={{ maxWidth: cell.column.width }}
                     >
-                      {cell.render(isEditable)}
+                      {cell.render("Cell2")}
                     </td>
                   </Tooltip>
                 );
               })}
             </tr>
             {row.isExpanded && renderRowSubComponent({ row }).values ? (
-              <tr style={{ backgroundColor: "#f1f4f9" }}>
-                <td colSpan={visibleColumns.length}>
-                  <FlexDiv style={{ padding: "0 30px 0 0" }}>
-                    {renderRowSubComponent({ row }).values.length > 0 &&
-                      Object.keys(renderRowSubComponent({ row }).values[0]).map(
-                        (keyString, i) => {
+              <Fade in={!checked}>
+                <tr style={{ backgroundColor: "#f1f4f9" }}>
+                  <td colSpan={visibleColumns.length}>
+                    <FlexDiv style={{ padding: "0 30px 0 0" }}>
+                      {renderRowSubComponent({ row }).values.length > 0 &&
+                        Object.keys(
+                          renderRowSubComponent({ row }).values[0]
+                        ).map((keyString, i) => {
                           return (
                             <AddInfoDiv key={i}>
                               <AddInfoP style={{ fontWeight: "900" }}>
@@ -82,11 +85,11 @@ export default function TableBody({
                               </AddInfoP>
                             </AddInfoDiv>
                           );
-                        }
-                      )}
-                  </FlexDiv>
-                </td>
-              </tr>
+                        })}
+                    </FlexDiv>
+                  </td>
+                </tr>
+              </Fade>
             ) : null}
           </>
         );

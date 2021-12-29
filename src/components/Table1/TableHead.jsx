@@ -3,7 +3,6 @@ import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import { ThDiv, SortByP } from "../StyledComponents/Elements";
 export default function TableHead({ headerGroups }) {
-  //clearSortBy
   return (
     <thead>
       {headerGroups.map((headerGroup, i) => (
