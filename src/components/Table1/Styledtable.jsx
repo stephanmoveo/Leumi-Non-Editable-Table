@@ -11,6 +11,7 @@ import {
 } from "../../store/slices/dataSlice";
 import ToolTip from "./ToolTip";
 import AlertDialog from "../Table1/AlertDialog";
+//lll
 
 function StyledTable({ tableData, columnData, newDataCallback, mainTitle }) {
   const dispatch = useDispatch();
